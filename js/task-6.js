@@ -14,13 +14,14 @@ create.addEventListener("click", createBoxes);
 function createBoxes() {
   const amount = parseInt(input.value);
 
-  if (amount <= 1 && amount >= 100) {
+  if (amount <= 1 || amount >= 100) {
     return;
   }
 
   boxes.innerHTML = "";
 
   let size = 30;
+  const fragment = document.createDocumentFragment();
 
   for (let i = 1; i <= amount; i++) {
     const box = document.createElement("div");
@@ -31,9 +32,10 @@ function createBoxes() {
 
     box.style.backgroundColor = getRandomHexColor();
 
-    boxes.appendChild(box);
+    fragment.appendChild(box);
   }
 
+  boxes.appendChild(fragment);
   input.value = "";
 }
 
